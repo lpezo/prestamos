@@ -1,0 +1,39 @@
+<form>
+    <h1>
+        Préstamos al toque. Obtén tu dinero en tan sólo 45 minutos
+    </h1>
+    <mat-grid-list cols="3" rows="2" rowHeight="200px">
+        <mat-grid-tile>
+            <mat-form-field appearance="fill">
+            <mat-label>Seleccione el monto:</mat-label>
+            <mat-select [(ngModel)]="selectedMonto" name="monto">
+                <mat-option *ngFor="let monto of montos" [value]="monto.monto">
+                s/. {{monto.monto}}
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-form-field appearance="fill">
+            <mat-label>Escoge numero de cuotas:</mat-label>
+            <mat-select [(ngModel)]="selectedCuota" name="cuota">
+                <mat-option *ngFor="let cuota of cuotas" [value]="cuota.numero">
+                {{cuota.numero}} cuotas
+                </mat-option>
+            </mat-select>
+            </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-raised-button color="warn"> Click Aquí, solicitalo!!!</button>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h2>Prestamos al toque a tu alcance</h2>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <span>Monto por cuota:</span>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
