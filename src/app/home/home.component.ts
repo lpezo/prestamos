@@ -11,17 +11,19 @@ export class HomeComponent implements OnInit {
   montos = [];
   cuotas = [];
 
-  selectedMonto: string;
-  selectedCuota: string;
+  selectedMonto: number;
+  selectedCuota: number;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
-    this.apiService.get().subscribe((data: any)=>{  
-      console.log(data);
-      this.montos = data.montos;
-      this.cuotas = data.cuotas;
-		})
+    this.apiService.getMontos().subscribe((data: any)=>{  
+      this.montos = data;
+    })
+    this.apiService.getCuotas().subscribe((data: any)=>{  
+      this.cuotas = data;
+    })
+    
   }
 
 }

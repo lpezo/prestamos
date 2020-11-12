@@ -6,11 +6,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
 
-  private SERVER_URL = "http://192.168.1.104:3000/inicio";
+  private SERVER_URL = "https://us-central1-prestaaltoke.cloudfunctions.net/app/api/";
   
   constructor(private httpClient: HttpClient) { }
 
-  public get(){  
-		return this.httpClient.get(this.SERVER_URL);  
+  public getMontos(){  
+		return this.httpClient.get(this.SERVER_URL + "montos");
+	}  
+  public getCuotas(){  
+		return this.httpClient.get(this.SERVER_URL + "cuotas");
 	}  
 }

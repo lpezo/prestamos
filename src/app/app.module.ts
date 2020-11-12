@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-//import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -34,7 +34,7 @@ import { MatGridListModule }  from '@angular/material/grid-list';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    //MatProgressSpinnerModule,
+    MatProgressSpinnerModule,
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,

@@ -1,4 +1,5 @@
-<form>
+<mat-spinner *ngIf="cuotas.length === 0"></mat-spinner>
+<form *ngIf="cuotas.length > 0">
     <h1>
         Préstamos al toque. Obtén tu dinero en tan sólo 45 minutos
     </h1>
@@ -17,8 +18,8 @@
             <mat-form-field appearance="fill">
             <mat-label>Escoge numero de cuotas:</mat-label>
             <mat-select [(ngModel)]="selectedCuota" name="cuota">
-                <mat-option *ngFor="let cuota of cuotas" [value]="cuota.numero">
-                {{cuota.numero}} cuotas
+                <mat-option *ngFor="let cuota of cuotas" [value]="cuota.cuota">
+                {{cuota.cuota}} cuotas
                 </mat-option>
             </mat-select>
             </mat-form-field>
