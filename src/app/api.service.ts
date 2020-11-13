@@ -13,14 +13,14 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getMontos(){  
-    if (environment.production)
+    //if (environment.production)
       return this.httpClient.get(this.SERVER_URL + "montos");
-    return of(environment.montos);
+    //return of(environment.montos);
 	}  
   public getCuotas(){  
-    if (environment.production)
+    //if (environment.production)
       return this.httpClient.get(this.SERVER_URL + "cuotas");
-    return of(environment.cuotas);
+    //return of(environment.cuotas);
   }  
   
   public calcular(monto: number, cuota: number){

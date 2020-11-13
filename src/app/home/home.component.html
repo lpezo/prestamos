@@ -34,23 +34,27 @@
 
         </mat-grid-tile>
         <mat-grid-tile>
-            <h2>Prestamos al toque a tu alcance</h2>
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-card>
                 <mat-card-header>
-                    <mat-card-title>Total: {{itemstotal | number:'1.2-2'}}</mat-card-title>
+                    <mat-card-title>Total a pagar: {{itemstotal | number:'1.2-2'}}</mat-card-title>
                 </mat-card-header>
                 <mat-card-content>
-                    <div style="display: flex; flex-direction: column; align-items: left;">
+                    <!-- <div style="display: flex; flex-direction: column; align-items: left;">
                         <span *ngFor="let item of itemscalc"> {{item.num}}) {{item.cuota | number:'1.2-2'}}</span>
-                    </div>
+                    </div> -->
+                    <ul>
+                        <li *ngFor="let item of itemscalc"> Cuota {{item.num}}) {{item.cuota | number:'1.2-2'}} </li>
+                    </ul>
                 </mat-card-content>
             </mat-card>
             
         </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile>
+            <h2>Prestamos al toque a tu alcance</h2>
+        </mat-grid-tile>
         <mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
 </form>

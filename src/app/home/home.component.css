@@ -18,3 +18,7 @@ h2 {
 span {
     color: blue;
 }
+
+mat-card-content ul {
+    color: green;
+}
