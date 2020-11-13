@@ -10,7 +10,8 @@ export class HomeComponent implements OnInit {
 
   montos = [];
   cuotas = [];
-
+  itemscalc = [];
+  itemstotal : number = 0;
   selectedMonto: number;
   selectedCuota: number;
 
@@ -24,6 +25,13 @@ export class HomeComponent implements OnInit {
       this.cuotas = data;
     })
     
+  }
+
+  calcular() {
+    this.apiService.calcular(this.selectedMonto, this.selectedCuota).subscribe((data: any)=>{
+      this.itemscalc = data.items;
+      this.itemstotal = data.total;
+    })
   }
 
 }

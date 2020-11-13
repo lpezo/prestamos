@@ -1,3 +1,6 @@
 export const environment = {
-  production: true
+  production: true,
+  API: "https://us-central1-prestaaltoke.cloudfunctions.net/app/api/",
+  montos: [],
+  cuotas: []
 };

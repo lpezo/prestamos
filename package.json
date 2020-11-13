@@ -10,7 +10,7 @@
     "e2e": "ng e2e",
     "server": "json-server --host 0.0.0.0 --watch ./server/database.json",
     "prod": "ng build --prod --base-href=\"./\"",
-    "deploy": "sudo firebase deploy"
+    "deploy": "firebase deploy"
   },
   "private": true,
   "dependencies": {
