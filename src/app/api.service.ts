@@ -13,16 +13,20 @@ export class ApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getMontos(){  
-    //if (environment.production)
-      return this.httpClient.get(this.SERVER_URL + "montos");
-    //return of(environment.montos);
+    return this.httpClient.get(this.SERVER_URL + "montos");
 	}  
   public getCuotas(){  
-    //if (environment.production)
-      return this.httpClient.get(this.SERVER_URL + "cuotas");
-    //return of(environment.cuotas);
-  }  
-  
+    return this.httpClient.get(this.SERVER_URL + "cuotas");
+  }
+
+  public getSituaciones() {
+    return this.httpClient.get(this.SERVER_URL + "SituacionLaboral");
+  }
+
+  public getFrecuencias() {
+    return this.httpClient.get(this.SERVER_URL + "FrecuenciaIngresos");
+  }
+
   public calcular(monto: number, cuota: number){
     let obj = {items: [], total: 0};
     if (monto == undefined || cuota == undefined)

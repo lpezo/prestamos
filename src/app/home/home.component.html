@@ -1,5 +1,4 @@
-<mat-spinner *ngIf="cuotas.length === 0"></mat-spinner>
-<form layout *ngIf="cuotas.length > 0">
+<form layout>
     <h1>
         Préstamos al toque. Obtén tu dinero en tan sólo 45 minutos
     </h1>
@@ -26,14 +25,15 @@
         </mat-grid-tile>
         <mat-grid-tile>
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <button mat-raised-button color="warn" style="width:170px; margin-bottom: 10px;"> Click Aquí, solicitalo!!!</button>
+                <a mat-raised-button color="warn" style="width:170px; margin-bottom: 10px;" [routerLink]="['/solicitar']" [queryParams]="{monto: selectedMonto, cuotas: selectedCuota}" > Click Aquí, solicitalo!!!</a>
                 <button mat-raised-button color="primary" style="width:170px; margin-bottom: 10px;" (click)="calcular()"> Calculadora </button>
             </div>
         </mat-grid-tile>
-        <mat-grid-tile>
 
+        <mat-grid-tile>
         </mat-grid-tile>
         <mat-grid-tile>
+            <mat-spinner *ngIf="cuotas.length === 0"></mat-spinner>
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-card>

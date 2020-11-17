@@ -1,0 +1,98 @@
+    <mat-grid-list cols="3" rows="1" rowHeight="100px">
+        <mat-grid-tile>
+            <h1>
+                Solicitar Préstamo <span class="material-icons">check_circle_outline</span>
+            </h1>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <h2 *ngIf="solicitud.monto > 0 && solicitud.cuotas > 0">
+                Solicitud de S/. {{solicitud.monto}}
+            </h2>
+        </mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
+
+    </mat-grid-list>
+    <mat-grid-list cols="5" rowHeight="700px">
+        <mat-grid-tile></mat-grid-tile>
+
+        <mat-grid-tile colspan="3">
+            <mat-card *ngIf="solicitud.monto > 0 && solicitud.cuotas > 0" [class.mat-elevation-z2]="true">
+                <mat-card-header>
+                    <mat-card-title>Completa tus datos en los siguientes recuadros. Los campos con asterisco (*) son obligatorios.</mat-card-title>
+                </mat-card-header>
+                <mat-divider></mat-divider>
+                <mat-card-content>
+                    <form>
+                        <mat-form-field class="full-width">
+                          <mat-label>Nombre y Apellidos</mat-label>
+                          <input matInput [(ngModel)]="solicitud.nombre" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Dni</mat-label>
+                            <input matInput [(ngModel)]="solicitud.dni" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Situacion laboral</mat-label>
+                            <mat-select [(ngModel)]="solicitud.codigo_Situacion_Laboral" name="situacion">
+                                <mat-option *ngFor="let sol of situaciones" [value]="sol.id">
+                                {{sol.situacionLaboral}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Frecuencia de Ingresos</mat-label>
+                            <mat-select [(ngModel)]="solicitud.codigo_Frecuencia_Ingresos" name="frecuencia">
+                                <mat-option *ngFor="let frec of frecuencias" [value]="frec.id">
+                                {{frec.frecuenciaIngreso}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="medium-width">
+                            <mat-label>Tus Ingresos Mensuales</mat-label>
+                            <input type="number" matInput [(ngModel)]="solicitud.ingreso" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-form-field  class="medium-width">
+                            <mat-label>Tus Ingresos Mensuales en tu hogar</mat-label>
+                            <input type="number" matInput [(ngModel)]="solicitud.ingresoHogar" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-form-field class="medium-width">
+                            <mat-label>Número de Celular</mat-label>
+                            <input matInput [(ngModel)]="solicitud.celular" [ngModelOptions]="{standalone: true}">
+                          </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Correo Electrónico</mat-label>
+                            <input type="email" matInput [(ngModel)]="solicitud.correo" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <span>Será donde te informarán si tu solicitud fue aprobada</span>
+                        <mat-form-field class="full-width">
+                            <mat-label>Documento 1 (link)</mat-label>
+                            <input matInput [(ngModel)]="solicitud.documento_1" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Documento 2 (link)</mat-label>
+                            <input matInput [(ngModel)]="solicitud.documento_2" [ngModelOptions]="{standalone: true}">
+                        </mat-form-field>
+                        <mat-divider></mat-divider>
+                        <div style="padding-top: 10px;">
+                            <mat-checkbox class="check-margin" [(ngModel)]="checked_terminos" [ngModelOptions]="{standalone: true}">He leído y aceptado los términos </mat-checkbox> 
+                            <button (click)="openDialog()">Términos y Condiciones</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button  mat-raised-button color="primary" mat-button (click)="solicitar()">Solictar</button>
+                    <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
+                </mat-card-actions>                
+            </mat-card>
+            <mat-card *ngIf="solicitud.monto == 0 || solicitud.cuotas == 0" class="box-alert" [class.mat-elevation-z2]="true">
+                <mat-card-header>
+                    <mat-card-title>Por favor ingrese un monto y el número de cuotas</mat-card-title>
+                </mat-card-header>
+                <mat-card-actions>
+                    <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
+                  </mat-card-actions>                
+            </mat-card>
+        </mat-grid-tile>
+        
+        <mat-grid-tile></mat-grid-tile>
+    </mat-grid-list>

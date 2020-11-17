@@ -24,5 +24,18 @@
         {"cuota": 6},
         {"cuota": 7},
         {"cuota": 8}
-    ]
+    ],
+    "SituacionLaboral": 
+    [
+        {"id":1,"situacionLaboral":"Dependiente"},
+        {"id":2,"situacionLaboral":"Independiente"},
+        {"id":3,"situacionLaboral":"No trabajo"}],
+    "FrecuenciaIngresos": 
+    [
+        {"id":1,"frecuenciaIngreso":"Mensual"},
+        {"id":2,"frecuenciaIngreso":"Quincenal"},
+        {"id":3,"frecuenciaIngreso":"Semanal"},
+        {"id":4,"frecuenciaIngreso":"Diario"},
+        {"id":5,"frecuenciaIngreso":"Por proyecto"},
+        {"id":6,"frecuenciaIngreso":"Por contrato"}]
 }

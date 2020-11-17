@@ -13,34 +13,51 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDividerModule } from '@angular/material/divider';
 
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule} from '@angular/material/input';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSelectModule } from '@angular/material/select';
 import { MatGridListModule }  from '@angular/material/grid-list';
+import { MatDialogModule }  from '@angular/material/dialog';
+import { SolicitarComponent } from './solicitar/solicitar.component';
+import { TerminosComponent } from './terminos/terminos.component';
+
+const materialModules = [
+  MatButtonModule,
+  MatToolbarModule,
+  MatCardModule,
+  MatIconModule,
+  MatProgressSpinnerModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatGridListModule,
+  MatDialogModule
+];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AboutComponent
+    AboutComponent,
+    SolicitarComponent,
+    TerminosComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatIconModule,
-    MatButtonModule,
-    MatProgressSpinnerModule,
     FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatGridListModule
+    materialModules
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [materialModules],
+  bootstrap: [AppComponent],
+  entryComponents: [TerminosComponent]
 })
 export class AppModule { }

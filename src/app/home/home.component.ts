@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   itemstotal : number = 0;
   selectedMonto: number;
   selectedCuota: number;
-
+  
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
