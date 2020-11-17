@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 })
 export class ApiService {
 
-  private SERVER_URL = environment.API;
+  private SERVER_URL = environment.API_INI;
   
   constructor(private httpClient: HttpClient) { }
 
