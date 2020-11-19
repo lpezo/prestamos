@@ -13,27 +13,32 @@
 
     </mat-grid-list>
     <mat-grid-list cols="5" rowHeight="700px">
+
         <mat-grid-tile></mat-grid-tile>
 
         <mat-grid-tile colspan="3">
-            <mat-card *ngIf="solicitud.monto > 0 && solicitud.cuotas > 0" [class.mat-elevation-z2]="true">
+            <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="solicitar(ownerForm.value)" fxLayout="column wrap">
+                <mat-card *ngIf="solicitud.monto > 0 && solicitud.cuotas > 0" [class.mat-elevation-z2]="true">
                 <mat-card-header>
                     <mat-card-title>Completa tus datos en los siguientes recuadros. Los campos con asterisco (*) son obligatorios.</mat-card-title>
                 </mat-card-header>
                 <mat-divider></mat-divider>
                 <mat-card-content>
-                    <form>
                         <mat-form-field class="full-width">
-                          <mat-label>Nombre y Apellidos</mat-label>
-                          <input matInput [(ngModel)]="solicitud.nombre" [ngModelOptions]="{standalone: true}">
+                          <mat-label>Nombre y Apellidos (*)</mat-label>
+                          <input matInput formControlName="nombre">
+                          <mat-error *ngIf="hasError('nombre', 'required')">Nombre es requerido</mat-error>
+                          <mat-error *ngIf="hasError('nombre', 'maxlength')">El nombre tienen mas de 100 caracteres</mat-error>
                         </mat-form-field>
                         <mat-form-field class="full-width">
-                            <mat-label>Dni</mat-label>
-                            <input matInput [(ngModel)]="solicitud.dni" [ngModelOptions]="{standalone: true}">
-                        </mat-form-field>
+                            <mat-label>Dni (*)</mat-label>
+                            <input matInput formControlName="dni">
+                            <mat-error *ngIf="hasError('dni', 'required')">Dni es requerido</mat-error>
+                            <mat-error *ngIf="hasError('dni', 'maxlength') || hasError('dni', 'minlength')">El dni debe ser de 8 caracteres</mat-error>
+                          </mat-form-field>
                         <mat-form-field class="full-width">
                             <mat-label>Situacion laboral</mat-label>
-                            <mat-select [(ngModel)]="solicitud.codigo_Situacion_Laboral" name="situacion">
+                            <mat-select name="situacion" formControlName="situacion">
                                 <mat-option *ngFor="let sol of situaciones" [value]="sol.id">
                                 {{sol.situacionLaboral}}
                                 </mat-option>
@@ -41,7 +46,7 @@
                         </mat-form-field>
                         <mat-form-field class="full-width">
                             <mat-label>Frecuencia de Ingresos</mat-label>
-                            <mat-select [(ngModel)]="solicitud.codigo_Frecuencia_Ingresos" name="frecuencia">
+                            <mat-select name="frecuencia" formControlName="frecuencia">
                                 <mat-option *ngFor="let frec of frecuencias" [value]="frec.id">
                                 {{frec.frecuenciaIngreso}}
                                 </mat-option>
@@ -49,49 +54,50 @@
                         </mat-form-field>
                         <mat-form-field class="medium-width">
                             <mat-label>Tus Ingresos Mensuales</mat-label>
-                            <input type="number" matInput [(ngModel)]="solicitud.ingreso" [ngModelOptions]="{standalone: true}">
+                            <input type="number" matInput formControlName="ingreso_Mensual">
                         </mat-form-field>
                         <mat-form-field  class="medium-width">
                             <mat-label>Tus Ingresos Mensuales en tu hogar</mat-label>
-                            <input type="number" matInput [(ngModel)]="solicitud.ingresoHogar" [ngModelOptions]="{standalone: true}">
+                            <input type="number" matInput formControlName="ingreso_Mensual_Hogar">
                         </mat-form-field>
                         <mat-form-field class="medium-width">
                             <mat-label>Número de Celular</mat-label>
-                            <input matInput [(ngModel)]="solicitud.celular" [ngModelOptions]="{standalone: true}">
+                            <input matInput formControlName="celular">
                           </mat-form-field>
                         <mat-form-field class="full-width">
-                            <mat-label>Correo Electrónico</mat-label>
-                            <input type="email" matInput [(ngModel)]="solicitud.correo" [ngModelOptions]="{standalone: true}">
+                            <mat-label>Correo Electrónico (*)</mat-label>
+                            <input type="email" matInput formControlName="correo">
                         </mat-form-field>
                         <span>Será donde te informarán si tu solicitud fue aprobada</span>
                         <mat-form-field class="full-width">
                             <mat-label>Documento 1 (link)</mat-label>
-                            <input matInput [(ngModel)]="solicitud.documento_1" [ngModelOptions]="{standalone: true}">
+                            <input matInput formControlName="documento_1">
                         </mat-form-field>
                         <mat-form-field class="full-width">
                             <mat-label>Documento 2 (link)</mat-label>
-                            <input matInput [(ngModel)]="solicitud.documento_2" [ngModelOptions]="{standalone: true}">
+                            <input matInput formControlName="documento_2">
                         </mat-form-field>
                         <mat-divider></mat-divider>
                         <div style="padding-top: 10px;">
-                            <mat-checkbox class="check-margin" [(ngModel)]="checked_terminos" [ngModelOptions]="{standalone: true}">He leído y aceptado los términos </mat-checkbox> 
+                            <mat-checkbox class="check-margin" formControlName="check_termino">He leído y aceptado los términos </mat-checkbox> 
                             <button (click)="openDialog()">Términos y Condiciones</button>
+                            <mat-error *ngIf="hasError('check_termino', 'required')">Debe aceptar las condiciones y términos</mat-error>
                         </div>
-                    </form>
                 </mat-card-content>
                 <mat-card-actions>
-                    <button  mat-raised-button color="primary" mat-button (click)="solicitar()">Solictar</button>
+                    <button  mat-raised-button color="primary" mat-button [disabled]="!ownerForm.valid">Solicitar</button>
                     <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
                 </mat-card-actions>                
-            </mat-card>
-            <mat-card *ngIf="solicitud.monto == 0 || solicitud.cuotas == 0" class="box-alert" [class.mat-elevation-z2]="true">
-                <mat-card-header>
-                    <mat-card-title>Por favor ingrese un monto y el número de cuotas</mat-card-title>
-                </mat-card-header>
-                <mat-card-actions>
-                    <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
-                  </mat-card-actions>                
-            </mat-card>
+                </mat-card>
+                <mat-card *ngIf="solicitud.monto == 0 || solicitud.cuotas == 0" class="box-alert" [class.mat-elevation-z2]="true">
+                    <mat-card-header>
+                        <mat-card-title>Por favor ingrese un monto y el número de cuotas</mat-card-title>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
+                    </mat-card-actions>                
+                </mat-card>
+            </form>
         </mat-grid-tile>
         
         <mat-grid-tile></mat-grid-tile>

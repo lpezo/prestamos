@@ -12,6 +12,11 @@ form {
     margin-right: 20px;
 }
 
+.medium-width {
+    margin-right: 20px;
+}
+
+
 mat-card {
     margin: 4px;
 }
