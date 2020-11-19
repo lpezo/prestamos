@@ -67,6 +67,8 @@
                         <mat-form-field class="full-width">
                             <mat-label>Correo Electrónico (*)</mat-label>
                             <input type="email" matInput formControlName="correo">
+                            <mat-error *ngIf="hasError('correo', 'required')">Correo es requerido</mat-error>
+                            <mat-error *ngIf="hasError('correo', 'email')">Error en correo</mat-error>
                         </mat-form-field>
                         <span>Será donde te informarán si tu solicitud fue aprobada</span>
                         <mat-form-field class="full-width">
@@ -80,7 +82,7 @@
                         <mat-divider></mat-divider>
                         <div style="padding-top: 10px;">
                             <mat-checkbox class="check-margin" formControlName="check_termino">He leído y aceptado los términos </mat-checkbox> 
-                            <button (click)="openDialog()">Términos y Condiciones</button>
+                            <button (click)="openDialog($event)">Términos y Condiciones</button>
                             <mat-error *ngIf="hasError('check_termino', 'required')">Debe aceptar las condiciones y términos</mat-error>
                         </div>
                 </mat-card-content>

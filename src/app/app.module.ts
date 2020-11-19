@@ -24,6 +24,7 @@ import { MatGridListModule }  from '@angular/material/grid-list';
 import { MatDialogModule }  from '@angular/material/dialog';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { TerminosComponent } from './terminos/terminos.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 const materialModules = [
   MatButtonModule,
@@ -46,7 +47,8 @@ const materialModules = [
     HomeComponent,
     AboutComponent,
     SolicitarComponent,
-    TerminosComponent
+    TerminosComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,

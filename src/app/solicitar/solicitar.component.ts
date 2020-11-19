@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
-import { Solicitud } from '../shared/solicitud.model';
 import { MatDialog } from '@angular/material/dialog';
 import { TerminosComponent } from '../terminos/terminos.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Solicitud } from '../shared/solicitud.model';
 
 @Component({
   selector: 'app-solicitar',
@@ -46,7 +46,7 @@ export class SolicitarComponent implements OnInit {
       ingreso_Mensual: new FormControl(0),
       ingreso_Mensual_Hogar: new FormControl(0),
       celular: new FormControl(''),
-      correo: new FormControl('', [Validators.required]),
+      correo: new FormControl('', [Validators.required, Validators.email]),
       documento_1: new FormControl(''),
       documento_2: new FormControl('')
     });
@@ -56,7 +56,8 @@ export class SolicitarComponent implements OnInit {
   public hasError = (controlName: string, errorName: string) =>{
     return this.ownerForm.controls[controlName].hasError(errorName);
   }
-  openDialog(): void {
+  openDialog($event): void {
+    $event.preventDefault();
     const dialogRef = this.dialog.open(TerminosComponent, {
       width: '400px',
       data: { }
