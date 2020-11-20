@@ -23,8 +23,8 @@ export class RegistrarComponent implements OnInit {
     this.ownerForm = new FormGroup({
       nombre: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       apellido: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      tipo_doc: new FormControl('d', [Validators.required]),
-      num_doc: new FormControl('', [Validators.required]),
+      //tipo_doc: new FormControl('d', [Validators.required]),
+      dni: new FormControl('', [Validators.required, Validators.maxLength(8), Validators.minLength(8)]),
       telefono: new FormControl(''),
       correo: new FormControl('', [Validators.required, Validators.email]),
       clave: new FormControl(null, [Validators.required]),
@@ -60,8 +60,8 @@ export class RegistrarComponent implements OnInit {
     if (this.ownerForm.valid) {
       this.registro.nombre = ownerFormValue.nombre;
       this.registro.apellido = ownerFormValue.apellido;
-      this.registro.tipo_doc = ownerFormValue.tipo_doc;
-      this.registro.num_doc = ownerFormValue.num_doc;
+      //this.registro.tipo_doc = ownerFormValue.tipo_doc;
+      this.registro.dni = ownerFormValue.num_doc;
       this.registro.telefono = ownerFormValue.telefono;
       this.registro.correo = ownerFormValue.correo;
 

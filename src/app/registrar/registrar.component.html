@@ -29,7 +29,8 @@
                         <input matInput formControlName="apellido">
                         <mat-error *ngIf="hasError('apellido', 'required')">Apellido es requerido</mat-error>
                         <mat-error *ngIf="hasError('apellido', 'maxlength')">El apellido tienen mas de 50 caracteres</mat-error>
-                      </mat-form-field>
+                    </mat-form-field>
+                    <!--
                     <mat-form-field class="half-width">
                         <mat-label>Tipo de Documento</mat-label>
                         <mat-select name="tipo_doc" formControlName="tipo_doc">
@@ -38,11 +39,12 @@
                             <mat-option value="c">carnet de extranjeria</mat-option>
                         </mat-select>
                     </mat-form-field>
+                    -->
                     <mat-form-field class="half-width">
-                        <mat-label>Numero de Documento (*)</mat-label>
-                        <input matInput formControlName="num_doc">
-                        <mat-error *ngIf="hasError('num_doc', 'required')">Número de Documento es requerido</mat-error>
-                        <mat-error *ngIf="hasError('num_doc', 'maxlength')">El número de docucmento no debe ser mas de 20 caracteres</mat-error>
+                        <mat-label>Dni (*)</mat-label>
+                        <input matInput formControlName="dni">
+                        <mat-error *ngIf="hasError('dni', 'required')">Número de Documento es requerido</mat-error>
+                        <mat-error *ngIf="hasError('dni', 'maxlength') || hasError('dni', 'minlength')">Dni debe debe tener 8 caracteres</mat-error>
                     </mat-form-field>
                     <mat-form-field class="medium-width">
                         <mat-label>Número de Teléfono</mat-label>
