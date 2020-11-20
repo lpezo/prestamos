@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatCheckboxModule } from "@angular/material/checkbox";
@@ -24,6 +24,7 @@ import { MatGridListModule }  from '@angular/material/grid-list';
 import { MatDialogModule }  from '@angular/material/dialog';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { TerminosComponent } from './terminos/terminos.component';
+import { RegistrarComponent } from './registrar/registrar.component';
 
 const materialModules = [
   MatButtonModule,
@@ -37,7 +38,7 @@ const materialModules = [
   MatCheckboxModule,
   MatSelectModule,
   MatGridListModule,
-  MatDialogModule
+  MatDialogModule,
 ];
 
 @NgModule({
@@ -46,14 +47,15 @@ const materialModules = [
     HomeComponent,
     AboutComponent,
     SolicitarComponent,
-    TerminosComponent
+    TerminosComponent,
+    RegistrarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormsModule,
+    ReactiveFormsModule, FormsModule,
     materialModules
   ],
   exports: [materialModules],

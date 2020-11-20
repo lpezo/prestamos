@@ -2,7 +2,7 @@ export class Solicitud {
     id: number;
     nombre: string;
     dni: string;
-    codigo_Situacion_Laborar: number;
+    codigo_Situacion_Laboral: number;
     codigo_Frecuencia_Ingresos: number;
     ingreso_Mensual: number;
     ingreso_Mensual_Hogar: number;

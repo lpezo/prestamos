@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  API: "http://127.0.0.1:3000/",
-  API_INI: "http://127.0.0.1:3000/"
+  API: "https://prestaltoke.azurewebsites.net/",
+  API_INI: "https://prestaltoke.azurewebsites.net/InicioGet/"
 };
+  //API_INI: "http://webserver:3000/"
 
 /*
  * For easier debugging in development mode, you can import the following file

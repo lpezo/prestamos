@@ -1,0 +1,83 @@
+<mat-grid-list cols="3" rows="1" rowHeight="100px">
+    <mat-grid-tile>
+        <h1>
+            Registro de Usuario <span class="material-icons">account_circle</span>
+        </h1>
+    </mat-grid-tile>
+
+</mat-grid-list>
+<mat-grid-list cols="5" rowHeight="500px">
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile colspan="3">
+        <form [formGroup]="ownerForm" autocomplete="off" novalidate (ngSubmit)="registrar(ownerForm.value)" fxLayout="column wrap">
+            <mat-card [class.mat-elevation-z2]="true">
+            <mat-card-header>
+                <mat-card-title>Completa tus datos en los siguientes recuadros. Los campos con asterisco (*) son obligatorios.</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                    <mat-form-field class="half-width">
+                      <mat-label>Nombres (*)</mat-label>
+                      <input matInput formControlName="nombre">
+                      <mat-error *ngIf="hasError('nombre', 'required')">Nombre es requerido</mat-error>
+                      <mat-error *ngIf="hasError('nombre', 'maxlength')">El nombre tienen mas de 50 caracteres</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                        <mat-label>Apellidos (*)</mat-label>
+                        <input matInput formControlName="apellido">
+                        <mat-error *ngIf="hasError('apellido', 'required')">Apellido es requerido</mat-error>
+                        <mat-error *ngIf="hasError('apellido', 'maxlength')">El apellido tienen mas de 50 caracteres</mat-error>
+                      </mat-form-field>
+                    <mat-form-field class="half-width">
+                        <mat-label>Tipo de Documento</mat-label>
+                        <mat-select name="tipo_doc" formControlName="tipo_doc">
+                            <mat-option value="d">dni</mat-option>
+                            <mat-option value="r">ruc</mat-option>
+                            <mat-option value="c">carnet de extranjeria</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                        <mat-label>Numero de Documento (*)</mat-label>
+                        <input matInput formControlName="num_doc">
+                        <mat-error *ngIf="hasError('num_doc', 'required')">Número de Documento es requerido</mat-error>
+                        <mat-error *ngIf="hasError('num_doc', 'maxlength')">El número de docucmento no debe ser mas de 20 caracteres</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="medium-width">
+                        <mat-label>Número de Teléfono</mat-label>
+                        <input matInput formControlName="telefono">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Correo Electrónico (*)</mat-label>
+                        <input type="email" matInput formControlName="correo">
+                        <mat-error *ngIf="hasError('correo', 'required')">Correo es requerido</mat-error>
+                        <mat-error *ngIf="hasError('correo', 'email')">Email errado</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                        <mat-label>Clave (*)</mat-label>
+                        <input type="password" matInput formControlName="clave">
+                        <mat-error *ngIf="hasError('clave', 'required')">Clave es requerido</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="half-width">
+                        <mat-label>Confirme Clave (*)</mat-label>
+                        <input type="password" matInput formControlName="confirmaClave">
+                        <mat-error *ngIf="hasError('confirmaClave', 'required')">Confirma Clave es requerido</mat-error>
+                        <mat-error *ngIf="hasError('confirmaClave', 'mismatch')">Claves diferentes</mat-error>
+                    </mat-form-field>
+                    <mat-divider></mat-divider>
+                    <div style="padding-top: 10px;">
+                        <mat-checkbox class="check-margin" formControlName="check_termino">He leído y aceptado los términos </mat-checkbox> 
+                        <button (click)="openDialog($event)">Términos y Condiciones</button>
+                        <mat-error *ngIf="hasError('check_termino', 'required')">Debe aceptar las condiciones y términos</mat-error>
+                    </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button  mat-raised-button color="primary" mat-button [disabled]="!ownerForm.valid">Registrar</button>
+                <a  mat-raised-button color="warn" mat-button [routerLink]="['/home']">Retornar</a>
+            </mat-card-actions>                
+            </mat-card>
+        </form>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile>
+</mat-grid-list>

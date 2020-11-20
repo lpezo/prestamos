@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { of } from 'rxjs';
+import { Solicitud } from './shared/solicitud.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
+  private SERVER_EXT = environment.API;
   private SERVER_URL = environment.API_INI;
   
   constructor(private httpClient: HttpClient) { }
@@ -40,6 +42,10 @@ export class ApiService {
     }
     obj = {items: items, total: total};
     return of(obj);
+  }
+
+  public saveSolicitud(solicitud: Solicitud) {
+    return this.httpClient.post(this.SERVER_EXT + "SolicitudPost/registro", solicitud);
   }
 
 }
