@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { of } from 'rxjs';
 import { Solicitud } from './shared/solicitud.model';
+import { Registro } from './shared/registro.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,13 @@ export class ApiService {
     return this.httpClient.post(this.SERVER_EXT + "SolicitudPost/registro", solicitud);
   }
 
+  public saveRegistro(registro: Registro) {
+    return this.httpClient.post(this.SERVER_EXT + "clientesPost/registrarCliente", registro);
+  }
+
+/*
+  public login(correo: string, clave: string) {
+    return this.httpClient.post(this.SERVER_EXT + "clientesPost/Login", {user: correo, password: clave});
+  }
+*/
 }

@@ -4,7 +4,10 @@
 </h1>  
 <span class="fill-space"></span>
 <button mat-button routerLink="/">Inicio</button>  
-<button mat-button routerLink="/registrar">Registrar</button>
-<button mat-button routerLink="/about">Acerca de</button>
+<button *ngIf="!currentUser" mat-button routerLink="/login">Login</button>
+<button *ngIf="currentUser" mat-button (click)="logout()">Logout</button>
+<button *ngIf="!currentUser" mat-button >No logeado</button>
+<button *ngIf="currentUser" mat-button >Bienvenido {{currentUser.nombres}}</button>
+<button mat-button routerLink="/about">Créditos</button>
 </mat-toolbar>
 <router-outlet></router-outlet>

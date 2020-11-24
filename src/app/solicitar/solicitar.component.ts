@@ -5,6 +5,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { TerminosComponent } from '../terminos/terminos.component';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Solicitud } from '../shared/solicitud.model';
+import { DialogConfirmComponent } from '../dialog-confirm/dialog-confirm.component';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../shared/authentication.service';
 
 @Component({
   selector: 'app-solicitar',
@@ -21,7 +24,12 @@ export class SolicitarComponent implements OnInit {
 
   checked_terminos: boolean = false;
 
-  constructor(private Activatedroute:ActivatedRoute, private apiService: ApiService, public dialog: MatDialog) { }
+  constructor(
+    private Activatedroute:ActivatedRoute, 
+    private apiService: ApiService, 
+    public dialog: MatDialog, 
+    private router: Router,
+    private authenticate: AuthenticationService) { }
 
   ngOnInit(): void {
     this.solicitud = new Solicitud();
@@ -87,12 +95,51 @@ export class SolicitarComponent implements OnInit {
 
       this.apiService.saveSolicitud(this.solicitud).subscribe((data: any) =>{
         console.log(data);
-        if (data == 1)
-          alert ("Se registró!");
+        if (data == null){
+          alert("Ha ocurrido un error");
+          return;
+        }
+          
+        if (data.code == 100){
+          //alert ("Se registró!");
+          this.aceptado(data.status);
+        }
+        else if (data.code == 300){
+          this.denegado(data.status)
+        }
         else
           alert ("NO se registró");
       });
     }
   }
 
+  aceptado(msj: string) {
+    this.dialog
+    .open(DialogConfirmComponent, {
+      data: {num: 2, message: msj}
+    })
+    .afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      if (confirmado) {
+        //alert("¡A mí también!");
+        if (this.authenticate.islogged())
+          this.router.navigate(['/']);
+        else
+          this.router.navigate(['/login']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
+  }
+
+  denegado(msj: string) {
+    this.dialog
+    .open(DialogConfirmComponent, {
+      data: {num: 1, message: msj}
+    })
+    .afterClosed()
+    .subscribe((confirmado: Boolean) => {
+      this.router.navigate(['/']);
+    });
+  }
 }

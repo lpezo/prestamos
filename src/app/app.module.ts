@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatTableModule } from '@angular/material/table';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -25,6 +27,8 @@ import { MatDialogModule }  from '@angular/material/dialog';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { TerminosComponent } from './terminos/terminos.component';
 import { RegistrarComponent } from './registrar/registrar.component';
+import { LoginComponent } from './login/login.component';
+import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 
 const materialModules = [
   MatButtonModule,
@@ -39,6 +43,7 @@ const materialModules = [
   MatSelectModule,
   MatGridListModule,
   MatDialogModule,
+  MatTableModule
 ];
 
 @NgModule({
@@ -48,7 +53,9 @@ const materialModules = [
     AboutComponent,
     SolicitarComponent,
     TerminosComponent,
-    RegistrarComponent
+    RegistrarComponent,
+    LoginComponent,
+    DialogConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +63,9 @@ const materialModules = [
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule, FormsModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-top-left'
+    }),
     materialModules
   ],
   exports: [materialModules],
