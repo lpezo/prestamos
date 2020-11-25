@@ -27,6 +27,7 @@
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <a mat-raised-button color="warn" style="width:170px; margin-bottom: 10px;" [routerLink]="['/solicitar']" [queryParams]="{monto: selectedMonto, cuotas: selectedCuota}" > Click Aquí, solicitalo!!!</a>
                 <button mat-raised-button color="primary" style="width:170px; margin-bottom: 10px;" (click)="calcular()"> Calculadora </button>
+                <button *ngIf="currentUser" mat-raised-button color="accent" style="width:170px; margin-bottom: 10px;" [routerLink]="['/asociar']"> Asociar Cuenta </button>
             </div>
         </mat-grid-tile>
 

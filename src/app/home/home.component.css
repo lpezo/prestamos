@@ -22,3 +22,7 @@ span {
 mat-card-content ul {
     color: green;
 }
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #10a310;
+}

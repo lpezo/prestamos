@@ -16,6 +16,7 @@ export class RegistrarComponent implements OnInit {
   public ownerForm: FormGroup;
   registro: Registro;
   checked_terminos: boolean = false;
+  hide = true;
   constructor(
     private apiService: ApiService, 
     public dialog: MatDialog,

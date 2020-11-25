@@ -29,6 +29,7 @@ import { TerminosComponent } from './terminos/terminos.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { LoginComponent } from './login/login.component';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
+import { AsociarComponent } from './asociar/asociar.component';
 
 const materialModules = [
   MatButtonModule,
@@ -55,7 +56,8 @@ const materialModules = [
     TerminosComponent,
     RegistrarComponent,
     LoginComponent,
-    DialogConfirmComponent
+    DialogConfirmComponent,
+    AsociarComponent
   ],
   imports: [
     BrowserModule,

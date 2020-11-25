@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+import { AuthenticationService } from '../shared/authentication.service';
+import { User } from '../shared/user.models';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +16,17 @@ export class HomeComponent implements OnInit {
   itemstotal : number = 0;
   selectedMonto: number;
   selectedCuota: number;
-  
-  constructor(private apiService: ApiService) { }
+  currentUser: User;
+
+  constructor(private apiService: ApiService, private authenticate: AuthenticationService) 
+  { 
+    this.authenticate.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit(): void {
+
+    
+
     this.apiService.getMontos().subscribe((data: any)=>{  
       this.montos = data;
     })
@@ -32,6 +41,10 @@ export class HomeComponent implements OnInit {
       this.itemscalc = data.items;
       this.itemstotal = data.total;
     })
+  }
+
+  asociar() {
+    alert("Asociar");
   }
 
 }

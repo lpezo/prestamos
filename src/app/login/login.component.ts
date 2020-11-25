@@ -14,7 +14,7 @@ import { User } from '../shared/user.models';
 })
 export class LoginComponent implements OnInit {
   public ownerForm: FormGroup;
-
+  hide = true;
   constructor(
     //private apiService: ApiService,
     private authenticate: AuthenticationService,

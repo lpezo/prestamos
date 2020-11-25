@@ -6,6 +6,7 @@ import { SolicitarComponent } from './solicitar/solicitar.component';
 import { RegistrarComponent } from './registrar/registrar.component';
 import { LoginComponent } from './login/login.component';
 //import { AppComponent } from './app.component';
+import { AsociarComponent } from './asociar/asociar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'solicitar', component: SolicitarComponent},
   { path: 'registrar', component: RegistrarComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'asociar', component: AsociarComponent},
   //{ path: 'component', component: AppComponent},
   { path: '**', redirectTo: 'home'}
 ];

@@ -58,12 +58,18 @@
                     </mat-form-field>
                     <mat-form-field class="half-width">
                         <mat-label>Clave (*)</mat-label>
-                        <input type="password" matInput formControlName="clave">
+                        <input [type]="hide ? 'password' : 'text'" matInput formControlName="clave">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                         <mat-error *ngIf="hasError('clave', 'required')">Clave es requerido</mat-error>
                     </mat-form-field>
                     <mat-form-field class="half-width">
                         <mat-label>Confirme Clave (*)</mat-label>
-                        <input type="password" matInput formControlName="confirmaClave">
+                        <input [type]="hide ? 'password' : 'text'" matInput formControlName="confirmaClave">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                         <mat-error *ngIf="hasError('confirmaClave', 'required')">Confirma Clave es requerido</mat-error>
                         <mat-error *ngIf="hasError('confirmaClave', 'mismatch')">Claves diferentes</mat-error>
                     </mat-form-field>
