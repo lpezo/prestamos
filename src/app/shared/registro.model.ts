@@ -8,5 +8,5 @@ export class Registro {
     correo: string;
     clave: string;
     estatus: string;
-    interbancario: string;
+    cuentata_bancaria: string;
 }

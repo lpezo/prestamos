@@ -49,13 +49,23 @@ export class ApiService {
     return this.httpClient.post(this.SERVER_EXT + "SolicitudPost/registro", solicitud);
   }
 
+  public acceptSolicitud(choise: number, id: number, dni: string) {
+    return this.httpClient.put(this.SERVER_EXT + "solicitudPut/actualizarEstatusSolicitud", {choise, id, dni});
+  }
+
+  public registrarPrestamo(id: number, dni: string) {
+    return this.httpClient.post(this.SERVER_EXT + 'PrestamoPost/registro', {id, dni});
+  }
+
   public saveRegistro(registro: Registro) {
     return this.httpClient.post(this.SERVER_EXT + "clientesPost/registrarCliente", registro);
   }
 
-/*
-  public login(correo: string, clave: string) {
-    return this.httpClient.post(this.SERVER_EXT + "clientesPost/Login", {user: correo, password: clave});
+  public sendInterbancario(data: any) {
+    return this.httpClient.put(this.SERVER_EXT + "clientePut/registrarCuentaInterbancaria", data);
   }
-*/
+  
+
+  
+
 }

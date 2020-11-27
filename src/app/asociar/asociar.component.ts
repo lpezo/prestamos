@@ -59,11 +59,10 @@ export class AsociarComponent implements OnInit {
   asociar(ownerFormValue) {
     if (this.ownerForm.valid) {
       this.registro.dni = this.currentUser.dni;
-      this.registro.interbancario = ownerFormValue.interbancario;
+      this.registro.cuentata_bancaria = ownerFormValue.interbancario;
 
-      let reg = { dni: this.registro.dni, interbancario: this.registro.interbancario};
+      let reg = { dni: this.registro.dni, cuenta_bancaria: this.registro.cuentata_bancaria};
       console.log('send interbancario', reg);
-      /*
       this.apiService.sendInterbancario(reg).subscribe((data: any) =>{
         console.log(data);
         if (data == 1){
@@ -73,7 +72,6 @@ export class AsociarComponent implements OnInit {
         else
           this.toastr.error("NO se registró", "Error");
       });
-      */
     }
   }
 

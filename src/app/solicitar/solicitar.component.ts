@@ -102,18 +102,20 @@ export class SolicitarComponent implements OnInit {
           
         if (data.code == 100){
           //alert ("Se registró!");
-          this.aceptado(data.status);
+          this.aceptado(data.status, data.id, this.solicitud.dni);
         }
         else if (data.code == 300){
           this.denegado(data.status)
         }
         else
-          alert ("NO se registró");
+        this.dialog.open(DialogConfirmComponent, {
+          data: {num: 1, message: data.status}
+        });
       });
     }
   }
 
-  aceptado(msj: string) {
+  aceptado(msj: string, id: number, dni: string) {
     this.dialog
     .open(DialogConfirmComponent, {
       data: {num: 2, message: msj}
@@ -121,12 +123,16 @@ export class SolicitarComponent implements OnInit {
     .afterClosed()
     .subscribe((confirmado: Boolean) => {
       if (confirmado) {
-        //alert("¡A mí también!");
-        if (this.authenticate.islogged())
-          this.router.navigate(['/']);
-        else
-          this.router.navigate(['/login']);
+        this.apiService.acceptSolicitud(1, id, dni).subscribe(resp=>{
+            this.apiService.registrarPrestamo(id, dni).subscribe(resp2=>{
+              if (this.authenticate.islogged())
+                this.router.navigate(['/']);
+              else
+                this.router.navigate(['/login']);
+            });
+          })
       } else {
+        this.apiService.acceptSolicitud(0, id, dni)
         this.router.navigate(['/']);
       }
     });
