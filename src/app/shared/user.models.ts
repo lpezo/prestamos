@@ -5,4 +5,6 @@ export class User {
     telefono: string;
     correo: string;
     clave: string;
+    tipo_usuario: number;
+    cuenta_bancaria: string;
   }

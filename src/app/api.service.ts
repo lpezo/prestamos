@@ -4,6 +4,8 @@ import { environment } from './../environments/environment';
 import { of } from 'rxjs';
 import { Solicitud } from './shared/solicitud.model';
 import { Registro } from './shared/registro.model';
+import { Cuotas } from './shared/cuotas.model';
+import { CuotaPendiente } from './shared/cuotaPendiente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -65,7 +67,24 @@ export class ApiService {
     return this.httpClient.put(this.SERVER_EXT + "clientePut/registrarCuentaInterbancaria", data);
   }
   
+  public getPrestamos() {
+    return this.httpClient.get<any[]>(this.SERVER_EXT + "PrestamoGet/prestamosPorDesembolsar");
+  }
 
+  public postPrestamo(codigo_Prestamo: string, cuenta_bancaria: string) {
+    return this.httpClient.post(this.SERVER_EXT + "PrestamoPost/DesembolsarPrestamo", {codigo_Prestamo, cuenta_bancaria});
+  }
   
+  public getEstadoCuotas(dni: string) {
+    return this.httpClient.get<Cuotas[]>(this.SERVER_EXT + "cuotasGet/cuotas/" + dni);
+  }
+
+  public getCuotaPendietes(dni: string) {
+    return this.httpClient.get<CuotaPendiente[]>(this.SERVER_EXT + "cuotasGet/cuotasPendientesPago/" + dni);
+  }
+
+  public registraPago(codigo_Prestamo: string, codigo_cuota: number) {
+    return this.httpClient.put(this.SERVER_EXT + "cuotaPut/registrarPagoCuota", {codigo_Prestamo, codigo_cuota});
+  }
 
 }

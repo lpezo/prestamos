@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 //import { AppComponent } from './app.component';
 import { AsociarComponent } from './asociar/asociar.component';
 import { EstadoComponent } from './estado/estado.component';
+import { PendientesComponent } from './pendientes/pendientes.component';
+import { DesembolsoComponent } from './desembolso/desembolso.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'asociar', component: AsociarComponent},
   //{ path: 'component', component: AppComponent},
   { path: 'estado', component: EstadoComponent },
+  { path: 'pendiente', component: PendientesComponent },
+  { path: 'desembolso', component: DesembolsoComponent},
+  { path: 'admin', component: AdminComponent},
   { path: '**', redirectTo: 'home'}
 ];
 

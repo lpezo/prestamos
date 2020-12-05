@@ -1,11 +1,9 @@
+import { validateHorizontalPosition } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
-
-export interface Estado {
-  cuota: number;
-  importe: number;
-  fecha_ven: Date;
-  estado: string;
-}
+import { ApiService } from '../api.service';
+import { AuthenticationService } from '../shared/authentication.service';
+import { Cuotas } from '../shared/cuotas.model';
+import { User } from '../shared/user.models';
 
 @Component({
   selector: 'app-estado',
@@ -13,17 +11,28 @@ export interface Estado {
   styleUrls: ['./estado.component.css']
 })
 export class EstadoComponent implements OnInit {
-  displayedColumns: string[] = ['cuota', 'importe', 'fecha_ven', 'estado'];
-  estados: Estado[] = [
-    { cuota: 1, importe: 150, fecha_ven: new Date(2020, 8, 31), estado: 'Cancelada' },
-    { cuota: 2, importe: 150, fecha_ven: new Date(2020, 9, 30), estado: 'Cancelada' },
-    { cuota: 3, importe: 150, fecha_ven: new Date(2020,10, 31), estado: 'Pendiente' },
-    { cuota: 4, importe: 150, fecha_ven: new Date(2020,11, 30), estado: 'Pendiente' }
-  ];
-  
-  constructor() { }
+  displayedColumns: string[] = ['nro_cuota', 'monto', 'fecha_vencimiento', 'estatus'];
+  estados: Cuotas[] = [];
+  user: User;
+  constructor(
+    private apiService: ApiService,
+    private authenticate: AuthenticationService
+    ) { }
 
   ngOnInit(): void {
+    this.user = this.authenticate.currentUserValue;
+    this.apiService.getEstadoCuotas(this.user.dni).subscribe(data=>{
+      this.estados = data.map(v=>{
+        if (v.estatus == 'C')
+          v['estado_nombre'] = 'Cancelado';
+        else if (v.estatus == 'P')
+          v['estado_nombre'] = 'Pendiente';
+        else
+          v['estado_nombre'] = v.estatus;
+        return v;
+      });
+      console.log('estados:', this.estados);
+    })
   }
 
 }

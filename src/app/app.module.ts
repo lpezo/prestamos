@@ -31,6 +31,10 @@ import { LoginComponent } from './login/login.component';
 import { DialogConfirmComponent } from './dialog-confirm/dialog-confirm.component';
 import { AsociarComponent } from './asociar/asociar.component';
 import { EstadoComponent } from './estado/estado.component';
+import { PendientesComponent } from './pendientes/pendientes.component';
+import { DesembolsoComponent } from './desembolso/desembolso.component';
+import { AdminComponent } from './admin/admin.component';
+import { PassarelaComponent } from './passarela/passarela.component';
 
 const materialModules = [
   MatButtonModule,
@@ -59,7 +63,11 @@ const materialModules = [
     LoginComponent,
     DialogConfirmComponent,
     AsociarComponent,
-    EstadoComponent
+    EstadoComponent,
+    PendientesComponent,
+    DesembolsoComponent,
+    AdminComponent,
+    PassarelaComponent
   ],
   imports: [
     BrowserModule,

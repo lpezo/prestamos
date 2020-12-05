@@ -24,15 +24,17 @@
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <a mat-raised-button color="warn" style="width:170px; margin-bottom: 10px;" [routerLink]="['/solicitar']" [queryParams]="{monto: selectedMonto, cuotas: selectedCuota}" > Click Aquí, solicitalo!!!</a>
-                <button mat-raised-button color="primary" style="width:170px; margin-bottom: 10px;" (click)="calcular()"> Calculadora </button>
-                <button *ngIf="currentUser" mat-raised-button color="accent" style="width:170px; margin-bottom: 10px;" [routerLink]="['/asociar']"> Asociar Cuenta </button>
-                <button *ngIf="currentUser" mat-raised-button color="accent" style="width:170px; margin-bottom: 10px;" [routerLink]="['/estado']"> Estado de Préstamo </button>
+            <div class="botons_vertical">
+                <a mat-raised-button color="warn" class="boton_vertical" [routerLink]="['/solicitar']" [queryParams]="{monto: selectedMonto, cuotas: selectedCuota}" > Click Aquí, solicitalo!!!</a>
+                <button mat-raised-button color="primary" class="boton_vertical" (click)="calcular()"> Calculadora </button>
             </div>
         </mat-grid-tile>
-
         <mat-grid-tile>
+            <div *ngIf="currentUser" class="botons_vertical">
+                <button mat-raised-button color="accent" class="boton_vertical" [routerLink]="['/asociar']"> Asociar Cuenta </button>
+                <button mat-raised-button color="accent" class="boton_vertical" [routerLink]="['/estado']"> Estado de Préstamo </button>
+                <button mat-raised-button color="accent" class="boton_vertical" [routerLink]="['/pendiente']"> Pendiente de Pago </button>
+            </div>
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-spinner *ngIf="cuotas.length === 0"></mat-spinner>
@@ -57,6 +59,7 @@
         <mat-grid-tile>
             <h2>Prestamos al toque a tu alcance</h2>
         </mat-grid-tile>
-        <mat-grid-tile></mat-grid-tile>
+        <mat-grid-tile>
+        </mat-grid-tile>
     </mat-grid-list>
 </form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { AuthenticationService } from '../shared/authentication.service';
 import { User } from '../shared/user.models';
@@ -18,14 +19,19 @@ export class HomeComponent implements OnInit {
   selectedCuota: number;
   currentUser: User;
 
-  constructor(private apiService: ApiService, private authenticate: AuthenticationService) 
+  constructor(private apiService: ApiService, 
+    private authenticate: AuthenticationService,
+    private router: Router) 
   { 
     this.authenticate.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit(): void {
 
-    
+    if (this.currentUser != null && this.currentUser.tipo_usuario == 1){
+      this.router.navigate(['/admin']);
+      return;
+    }
 
     this.apiService.getMontos().subscribe((data: any)=>{  
       this.montos = data;
@@ -41,10 +47,6 @@ export class HomeComponent implements OnInit {
       this.itemscalc = data.items;
       this.itemstotal = data.total;
     })
-  }
-
-  asociar() {
-    alert("Asociar");
   }
 
 }

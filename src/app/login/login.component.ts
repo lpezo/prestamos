@@ -49,7 +49,12 @@ export class LoginComponent implements OnInit {
         else {
           //let curuser = { 'correo': data.correo, 'id': data.id, 'nombres': data.nombres, 'apellidos': data.apellidos};
           //localStorage.setItem('currentuser', JSON.stringify(data));
-          this.router.navigate(['/']);
+          /*
+          if (data.tipo_usuario == 1)
+            this.router.navigate(['/admin']);
+          else
+            */
+           this.router.navigate(['/']);
         }
       })
     }

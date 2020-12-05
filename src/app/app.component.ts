@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from './shared/authentication.service';
 import { User } from './shared/user.models';
 
@@ -12,7 +13,8 @@ export class AppComponent {
   currentUser: User;
 
   constructor(
-    private authenticate: AuthenticationService
+    private authenticate: AuthenticationService,
+    private router: Router
   ) { 
       this.authenticate.currentUser.subscribe(x => this.currentUser = x);
     }
@@ -24,8 +26,8 @@ export class AppComponent {
   logout() {
     //localStorage.removeItem('currentuser');
     //this.changeLogged(false);
-    //this.router.navigate(['/']);
     this.authenticate.logout();
+    this.router.navigate(['/']);
   }
 
 }

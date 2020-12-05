@@ -1,0 +1,63 @@
+<section>
+<mat-grid-list cols="3" rows="1" rowHeight="100px">
+    <mat-grid-tile>
+        <h1>
+            Desembolsar Préstamos <span class="material-icons">money</span>
+        </h1>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-spinner *ngIf="procesando"></mat-spinner>
+    </mat-grid-tile>
+
+</mat-grid-list>
+<mat-grid-list cols="1" rows="3" rowHeight="400px">
+
+    <mat-grid-tile>
+
+        <table mat-table [dataSource]="desembolsos" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="cliente">
+              <th mat-header-cell *matHeaderCellDef> Cliente </th>
+              <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="codigo_Prestamo">
+                <th mat-header-cell *matHeaderCellDef> Código </th>
+                <td mat-cell *matCellDef="let element"> {{element.codigo_Prestamo}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="estado">
+              <th mat-header-cell *matHeaderCellDef> Estado </th>
+              <td mat-cell *matCellDef="let element"> {{element.estado_Nombre}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="monto">
+                <th mat-header-cell *matHeaderCellDef> Monto Aprobado </th>
+                <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Desembolsar </th>
+                <td mat-cell *matCellDef="let element">
+                    <button mat-stroked-button color="primary" (click)="procesar(element)"> Procesar </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+
+</mat-grid-list>
+</section>

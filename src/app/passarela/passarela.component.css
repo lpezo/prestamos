@@ -1,0 +1,44 @@
+form {
+    min-width: 100px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.half-width {
+    width: 40%;
+    margin-right: 20px;
+}
+
+.medium-width {
+    margin-right: 20px;
+}
+
+
+mat-card {
+    width: 300px;
+}
+
+mat-card-header {
+    font-size: small;
+    margin: 0px;
+}
+mat-card-title {
+    text-align: center;
+    margin: 0px;
+}
+
+.mat-card-header-text {
+    margin: 0px;
+}
+
+.box-alert {
+    background-color: silver;
+}
+
+.check-margin {
+    margin: 0 10px;
+  }
+
