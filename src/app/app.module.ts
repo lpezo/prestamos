@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -49,7 +51,9 @@ const materialModules = [
   MatSelectModule,
   MatGridListModule,
   MatDialogModule,
-  MatTableModule
+  MatTableModule,
+  MatDatepickerModule,
+  MatMomentDateModule
 ];
 
 @NgModule({

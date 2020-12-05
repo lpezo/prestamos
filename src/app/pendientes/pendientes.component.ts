@@ -51,7 +51,7 @@ export class PendientesComponent implements OnInit {
   pagar(item: CuotaPendiente): void {
     this.dialog
     .open(PassarelaComponent, {
-      data: {user: this.user}
+      data: {user: this.user, monto: item.total}
     })
     .afterClosed()
     .subscribe((confirmado: Boolean) => {

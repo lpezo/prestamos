@@ -9,11 +9,17 @@ form {
 
 .half-width {
     width: 40%;
-    margin-right: 20px;
+    margin-left:auto; 
+    margin-right:0;
 }
 
 .medium-width {
     margin-right: 20px;
+}
+
+.rigth-width {
+    width: 40%;
+    float: right;
 }
 
 
@@ -40,5 +46,13 @@ mat-card-title {
 
 .check-margin {
     margin: 0 10px;
+  }
+
+  .month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .month-picker .mat-calendar-arrow {
+    display: none;
   }
 
